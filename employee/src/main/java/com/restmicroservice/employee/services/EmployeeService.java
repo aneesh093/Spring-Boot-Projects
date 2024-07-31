@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.restmicroservice.employee.entities.Employee;
+import com.restmicroservice.employee.exceptions.NoRecordFoundException;
 import com.restmicroservice.employee.repository.EmployeeRepo;
 import com.restmicroservice.employee.response.AddressResponse;
 import com.restmicroservice.employee.response.EmployeeResponse;
@@ -34,4 +35,8 @@ public class EmployeeService {
         return employeeResponse;
     }
 
+    public Employee getEmployee(int id) {
+        return empRepo.findById(id).orElseThrow( () -> new NoRecordFoundException("Records Not Found"));
+        
+    }
 }

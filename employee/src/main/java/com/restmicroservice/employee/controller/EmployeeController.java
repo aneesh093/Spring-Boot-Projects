@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restmicroservice.employee.entities.Employee;
 import com.restmicroservice.employee.response.EmployeeResponse;
 import com.restmicroservice.employee.services.EmployeeService;
 
@@ -22,4 +23,8 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.OK).body(employee);
     }
 
+	@GetMapping("/employee/{id}")
+    private Employee getEmployee(@PathVariable("id") int id) {
+        return employeeService.getEmployee(id);
+    }
 }
