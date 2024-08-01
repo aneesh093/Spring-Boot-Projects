@@ -18,13 +18,13 @@ public class EmployeeController {
 	EmployeeService employeeService;
 	
 	@GetMapping("/employees/{id}")
-    private ResponseEntity<EmployeeResponse> getEmployeeDetails(@PathVariable("id") int id) {
+    public ResponseEntity<EmployeeResponse> getEmployeeDetails(@PathVariable("id") int id) {
         EmployeeResponse employee = employeeService.getEmployeeById(id);
         return ResponseEntity.status(HttpStatus.OK).body(employee);
     }
 
 	@GetMapping("/employee/{id}")
-    private Employee getEmployee(@PathVariable("id") int id) {
+    public Employee getEmployee(@PathVariable("id") int id) {
         return employeeService.getEmployee(id);
     }
 }
