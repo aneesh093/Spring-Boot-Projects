@@ -20,4 +20,11 @@ public class ErrorResponse {
 		this.msg = msg;
 	}
 	
+	public ErrorResponse(String msg ,int statusCode) {
+		super();
+		this.msg = msg;
+		this.statusCode=statusCode;
+	}
+	
+	
 }
