@@ -1,0 +1,18 @@
+package KieRule;
+
+import com.restmicroservice.employee.entities.Employee;
+
+rule "Salary1"
+when
+    $empObject : Employee(salary > 10000)
+then
+    $empObject.setPriority(1);
+end
+
+
+rule "Salary2"
+when
+    $empObject : Employee(salary < 10000)
+then
+    $empObject.setPriority(5);
+end

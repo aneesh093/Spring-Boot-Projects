@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Component
 public class ErrorResponse {
 
@@ -25,6 +23,9 @@ public class ErrorResponse {
 		this.msg = msg;
 		this.statusCode=statusCode;
 	}
-	
-	
+
+	public ErrorResponse() {
+		super();
+	}
+
 }

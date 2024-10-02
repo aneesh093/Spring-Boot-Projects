@@ -16,7 +16,8 @@ public class Employee {
 	private Integer empId;
 	private String empName;
 	private BigDecimal salary;
-	
+	private Integer priority;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -42,11 +43,12 @@ public class Employee {
 	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
 	}
-	public Employee(Integer empId, String empName, BigDecimal salary) {
+	public Employee(Integer empId, String empName, BigDecimal salary,Integer priority) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
 		this.salary = salary;
+		this.priority=priority;
 	}
 	
 	public Employee() {
@@ -57,6 +59,13 @@ public class Employee {
 	public String toString() {
 		return "Employee [empId=" + empId + ", empName=" + empName + ", salary=" + salary + "]";
 	}
-	
-	
+
+	@Column(name="priority")
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
 }

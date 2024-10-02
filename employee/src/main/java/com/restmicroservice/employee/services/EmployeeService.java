@@ -3,6 +3,7 @@ package com.restmicroservice.employee.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.kie.api.runtime.KieSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,11 @@ public class EmployeeService {
 	
 	@Autowired
     private RestTemplate restTemplate;
- 
-    public EmployeeResponse getEmployeeById(int id) {
+
+    @Autowired
+    private KieSession session;
+
+    public EmployeeResponse getEmployeeById(Integer id) {
         Optional<Employee> employee = empRepo.findById(id);
         EmployeeResponse employeeResponse = mapper.map(employee, EmployeeResponse.class);
         
@@ -37,6 +41,15 @@ public class EmployeeService {
 
     public Employee getEmployee(int id) {
         return empRepo.findById(id).orElseThrow( () -> new NoRecordFoundException("Records Not Found"));
-        
+
+    }
+
+    public EmployeeResponse persistEmployee(Employee emp) {
+
+        session.insert(emp);
+        session.fireAllRules();
+        empRepo.save(emp);
+        return  mapper.map(emp, EmployeeResponse.class);
+
     }
 }
