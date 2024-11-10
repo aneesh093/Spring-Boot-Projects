@@ -1,5 +1,6 @@
 package com.restmicroservice.employee.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee/v1/save")
-    public ResponseEntity<EmployeeResponse> persistEmployee(@RequestBody Employee emp){
+    public ResponseEntity<EmployeeResponse> persistEmployee(@Valid  @RequestBody Employee emp){
         EmployeeResponse employee = employeeService.persistEmployee(emp);
         return ResponseEntity.status(HttpStatus.OK).body(employee);
     }

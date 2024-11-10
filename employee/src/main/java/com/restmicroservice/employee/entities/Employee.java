@@ -8,12 +8,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "employee")
 public class Employee {
 
 	private Integer empId;
+
+	@NotNull(message = "name should not be null")
+	@Size(min=3,max=30,message="name should be 3 to 30 characters")
 	private String empName;
 	private BigDecimal salary;
 	private Integer priority;
